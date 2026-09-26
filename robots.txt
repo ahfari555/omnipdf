@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Location
-Sitemap: https://omni-pdf-tools.vercel.app/sitemap.xml
+Sitemap: https://omnipdf-six.vercel.app/sitemap.xml
