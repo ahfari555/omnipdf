@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>OmniPDF - Free Online PDF Tools (Merge, Convert & Rotate)</title>
+  <meta name="description" content="100% free, secure, and browser-based online PDF tools. Merge multiple PDFs, convert JPG/PNG images to PDF, and rotate PDF pages instantly without server uploads.">
+  <meta name="keywords" content="merge pdf, combine pdf, jpg to pdf, image to pdf, rotate pdf, free pdf tools online, client side pdf editor">
+  <meta name="author" content="OmniPDF">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon SVG (Document Icon 📄) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+
+  <!-- Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+
+  <!-- PDF Processing Libraries (Client-Side Only) -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 50%, #faf5ff 100%);
+      transition: background-color 0.3s ease;
+    }
+    html.dark body {
+      background: linear-gradient(135deg, #0f172a 0%, #1c1917 50%, #111827 100%);
+      color: #f8fafc;
+    }
+    .pastel-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 30px -10px rgba(225, 29, 72, 0.1);
+      transition: all 0.3s ease;
+    }
+    html.dark .pastel-card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col antialiased text-slate-800 dark:text-slate-100">
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/80 backdrop-blur-md border-b border-rose-100 dark:border-slate-800 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 via-pink-500 to-purple-500 flex items-center justify-center font-black text-xl text-white shadow-md shadow-rose-200 dark:shadow-none">
+          📄
+        </div>
+        <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white">Omni<span class="gradient-text">PDF</span></span>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 100% Private (Browser Local)
+        </span>
+        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
+    <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-100 dark:border-rose-900 mb-3 inline-block">Client-Side PDF Suite</span>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-800 dark:text-white mb-3">
+      Every Tool You Need for <span class="gradient-text">PDF Files.</span>
+    </h1>
+    <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">
+      100% free, private, and browser-processed. Your documents never touch any server.
+    </p>
+  </section>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-8">
+
+    <!-- TOOLS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- TOOL 1: MERGE PDF -->
+      <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-rose-100 dark:bg-rose-900/60 text-rose-600 dark:text-rose-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">
+            🧩
+          </div>
+          <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Merge PDF</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Combine multiple PDF files into one single unified document in seconds.</p>
+
+          <input type="file" id="mergeInput" multiple accept="application/pdf" class="hidden" onchange="handleMergeFiles(this)">
+          <label for="mergeInput" class="block w-full border-2 border-dashed border-rose-200 dark:border-rose-800 hover:border-rose-400 rounded-2xl p-6 text-center cursor-pointer bg-rose-50/50 dark:bg-rose-950/30 transition">
+            <span class="text-2xl mb-2 block">📁</span>
+            <span class="text-xs font-bold text-rose-700 dark:text-rose-300 block">Select PDF Files</span>
+            <span class="text-[10px] text-slate-400 block mt-1">or drag & drop here</span>
+          </label>
+          <div id="mergeFileList" class="mt-3 text-xs font-mono text-slate-600 dark:text-slate-300 space-y-1 max-h-24 overflow-y-auto"></div>
+        </div>
+
+        <button onclick="processMergePDF()" class="mt-6 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-2xl transition shadow-md shadow-rose-200 dark:shadow-none text-xs">
+          Merge PDF Files
+        </button>
+      </div>
+
+      <!-- TOOL 2: JPG/PNG TO PDF -->
+      <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">
+            🖼️
+          </div>
+          <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">JPG to PDF</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Convert images (JPG, PNG) into a high-quality PDF document instantly.</p>
+
+          <input type="file" id="imgInput" multiple accept="image/jpeg, image/png" class="hidden" onchange="handleImgFiles(this)">
+          <label for="imgInput" class="block w-full border-2 border-dashed border-pink-200 dark:border-pink-800 hover:border-pink-400 rounded-2xl p-6 text-center cursor-pointer bg-pink-50/50 dark:bg-pink-950/30 transition">
+            <span class="text-2xl mb-2 block">📸</span>
+            <span class="text-xs font-bold text-pink-700 dark:text-pink-300 block">Select Images</span>
+            <span class="text-[10px] text-slate-400 block mt-1">JPG or PNG supported</span>
+          </label>
+          <div id="imgFileList" class="mt-3 text-xs font-mono text-slate-600 dark:text-slate-300 space-y-1 max-h-24 overflow-y-auto"></div>
+        </div>
+
+        <button onclick="processImgToPDF()" class="mt-6 w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-2xl transition shadow-md shadow-pink-200 dark:shadow-none text-xs">
+          Convert to PDF
+        </button>
+      </div>
+
+      <!-- TOOL 3: ROTATE PDF -->
+      <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/60 text-purple-600 dark:text-purple-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">
+            🔄
+          </div>
+          <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Rotate PDF</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Rotate all pages in your PDF document by 90, 180, or 270 degrees.</p>
+
+          <input type="file" id="rotateInput" accept="application/pdf" class="hidden" onchange="handleRotateFile(this)">
+          <label for="rotateInput" class="block w-full border-2 border-dashed border-purple-200 dark:border-purple-800 hover:border-purple-400 rounded-2xl p-4 text-center cursor-pointer bg-purple-50/50 dark:bg-purple-950/30 transition mb-3">
+            <span class="text-xs font-bold text-purple-700 dark:text-purple-300 block">Select 1 PDF File</span>
+          </label>
+          <div id="rotateFileName" class="text-xs font-mono text-slate-600 dark:text-slate-300 mb-3 truncate"></div>
+
+          <div class="grid grid-cols-3 gap-2 text-xs font-semibold">
+            <button onclick="setRotation(90)" id="rot90" class="p-2 border border-purple-200 dark:border-purple-800 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-xl">90°</button>
+            <button onclick="setRotation(180)" id="rot180" class="p-2 border border-purple-200 dark:border-purple-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl">180°</button>
+            <button onclick="setRotation(270)" id="rot270" class="p-2 border border-purple-200 dark:border-purple-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl">270°</button>
+          </div>
+        </div>
+
+        <button onclick="processRotatePDF()" class="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-2xl transition shadow-md shadow-purple-200 dark:shadow-none text-xs">
+          Rotate PDF Pages
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SEO & CONTENT SECTION (KUNCI UTAMA KELOLOSAN ADSENSE) -->
+    <article class="pastel-card p-8 md:p-10 rounded-3xl mt-10 space-y-6 text-sm text-slate-600 dark:text-slate-300">
+      <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Why Choose OmniPDF for Document Utilities?</h2>
+      <p>OmniPDF is a free online PDF editor and converter designed for privacy-conscious users, developers, students, and office professionals. Unlike traditional online PDF converters that require uploading confidential files to third-party servers, OmniPDF processes everything locally inside your browser using modern WebAssembly and JavaScript libraries.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="space-y-2">
+          <h3 class="font-bold text-slate-800 dark:text-white text-base">🔒 100% Privacy & Data Security</h3>
+          <p class="text-xs">Your documents never leave your computer. All rendering, merging, and image conversions happen locally on your system RAM, ensuring maximum GDPR & HIPAA privacy compliance.</p>
+        </div>
+        <div class="space-y-2">
+          <h3 class="font-bold text-slate-800 dark:text-white text-base">⚡ Instant Browser-Speed Processing</h3>
+          <p class="text-xs">No upload bandwidth limits, no waiting in server queues, and no file size restrictions caused by internet connection speeds. Merge and convert documents instantly.</p>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- FOOTER WITH LEGAL LINKS -->
+  <footer class="border-t border-rose-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© 2026 OmniPDF. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-slate-800 dark:hover:text-white transition">Terms of Service</a>
+        <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Theme Toggle
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.getElementById('themeIcon').innerText = '🌙';
+      } else {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').innerText = '☀️';
+      }
+    }
+
+    // 1. MERGE PDF LOGIC
+    let selectedMergeFiles = [];
+    function handleMergeFiles(input) {
+      selectedMergeFiles = Array.from(input.files);
+      const listEl = document.getElementById('mergeFileList');
+      listEl.innerHTML = selectedMergeFiles.map(f => `<div class="truncate">📄 ${f.name}</div>`).join('');
+    }
+
+    async function processMergePDF() {
+      if (selectedMergeFiles.length < 2) {
+        alert('Please select at least 2 PDF files to merge.');
+        return;
+      }
+      try {
+        const mergedPdf = await PDFLib.PDFDocument.create();
+        for (const file of selectedMergeFiles) {
+          const arrayBuffer = await file.arrayBuffer();
+          const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+          const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+          copiedPages.forEach(page => mergedPdf.addPage(page));
+        }
+        const pdfBytes = await mergedPdf.save();
+        downloadBlob(pdfBytes, 'merged_document.pdf', 'application/pdf');
+      } catch (err) {
+        alert('Error merging PDFs: ' + err.message);
+      }
+    }
+
+    // 2. JPG TO PDF LOGIC
+    let selectedImgFiles = [];
+    function handleImgFiles(input) {
+      selectedImgFiles = Array.from(input.files);
+      const listEl = document.getElementById('imgFileList');
+      listEl.innerHTML = selectedImgFiles.map(f => `<div class="truncate">🖼️ ${f.name}</div>`).join('');
+    }
+
+    async function processImgToPDF() {
+      if (selectedImgFiles.length === 0) {
+        alert('Please select at least one JPG or PNG image.');
+        return;
+      }
+      try {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        for (let i = 0; i < selectedImgFiles.length; i++) {
+          const file = selectedImgFiles[i];
+          const dataUrl = await readFileAsDataURL(file);
+          if (i > 0) doc.addPage();
+          doc.addImage(dataUrl, 'JPEG', 10, 10, 190, 0);
+        }
+        doc.save('converted_images.pdf');
+      } catch (err) {
+        alert('Error converting images: ' + err.message);
+      }
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // 3. ROTATE PDF LOGIC
+    let selectedRotateFile = null;
+    let selectedDegrees = 90;
+
+    function handleRotateFile(input) {
+      selectedRotateFile = input.files[0];
+      if (selectedRotateFile) {
+        document.getElementById('rotateFileName').innerText = "Selected: " + selectedRotateFile.name;
+      }
+    }
+
+    function setRotation(deg) {
+      selectedDegrees = deg;
+      [90, 180, 270].forEach(d => {
+        const btn = document.getElementById(`rot${d}`);
+        if (d === deg) {
+          btn.className = "p-2 border border-purple-200 dark:border-purple-800 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-xl font-bold";
+        } else {
+          btn.className = "p-2 border border-purple-200 dark:border-purple-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl";
+        }
+      });
+    }
+
+    async function processRotatePDF() {
+      if (!selectedRotateFile) {
+        alert('Please select a PDF file first.');
+        return;
+      }
+      try {
+        const arrayBuffer = await selectedRotateFile.arrayBuffer();
+        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+        const pages = pdfDoc.getPages();
+        
+        pages.forEach(page => {
+          const currentRotation = page.getRotation().angle;
+          page.setRotation(PDFLib.degrees(currentRotation + selectedDegrees));
+        });
+
+        const pdfBytes = await pdfDoc.save();
+        downloadBlob(pdfBytes, 'rotated_document.pdf', 'application/pdf');
+      } catch (err) {
+        alert('Error rotating PDF: ' + err.message);
+      }
+    }
+
+    // Helper Download
+    function downloadBlob(bytes, filename, mimeType) {
+      const blob = new Blob([bytes], { type: mimeType });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+    }
+  </script>
+</body>
+</html>
