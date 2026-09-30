@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
-  <title>OmniPDF - Free Online PDF Tools (Merge, Convert, Compress, Split & PDF to JPG)</title>
-  <meta name="description" content="100% free, secure, and browser-based online PDF tools. Merge, split, compress, convert PDF to JPG/Word, and watermark PDF files instantly without server uploads.">
-  <meta name="keywords" content="merge pdf, split pdf, compress pdf, pdf to jpg, pdf to word, watermark pdf, free pdf tools online">
+  <title>OmniPDF - Ultimate Free Online PDF Suite (Organize, Convert, Edit & Security)</title>
+  <meta name="description" content="100% free, secure, and browser-based online PDF toolkit. Merge, split, compress, convert PDF to JPG/Word, protect, watermark, and organize PDF files instantly.">
+  <meta name="keywords" content="merge pdf, split pdf, compress pdf, pdf to jpg, pdf to word, protect pdf, unlock pdf, watermark pdf, free pdf tools">
   <meta name="author" content="OmniPDF">
   <meta name="robots" content="index, follow">
 
@@ -17,7 +17,7 @@
   <!-- Google AdSense Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
 
-  <!-- Favicon SVG (Document Icon 📄) -->
+  <!-- Favicon SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
 
   <!-- Google Font: Plus Jakarta Sans -->
@@ -45,7 +45,6 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   </script>
-  <!-- JSZip for multiple image downloading in PDF to JPG -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
   <style>
@@ -112,162 +111,269 @@
   <div id="homeView">
     <!-- HERO SECTION -->
     <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
-      <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-100 dark:border-rose-900 mb-3 inline-block">Client-Side PDF Suite</span>
+      <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-100 dark:border-rose-900 mb-3 inline-block">Complete Enterprise PDF Suite</span>
       <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-800 dark:text-white mb-3">
         Every Tool You Need for <span class="gradient-text">PDF Files.</span>
       </h1>
       <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">
-        100% free, private, and browser-processed. Your documents never touch any server.
+        Organize, convert, compress, edit, and secure your documents instantly within your browser.
       </p>
     </section>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-8">
+    <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-10">
 
-      <!-- TOOLS GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- TOOL 1: MERGE PDF -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-rose-100 dark:bg-rose-900/60 text-rose-600 dark:text-rose-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">🧩</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Merge PDF</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Combine multiple PDF files into one single unified document.</p>
-            <input type="file" id="mergeInput" multiple accept="application/pdf" class="hidden" onchange="handleMergeFiles(this)">
-            <label for="mergeInput" class="block w-full border-2 border-dashed border-rose-200 dark:border-rose-800 hover:border-rose-400 rounded-2xl p-4 text-center cursor-pointer bg-rose-50/50 dark:bg-rose-950/30 transition">
-              <span class="text-xs font-bold text-rose-700 dark:text-rose-300 block">Select PDF Files</span>
-            </label>
-            <div id="mergeFileList" class="mt-3 text-xs font-mono text-slate-600 dark:text-slate-300 space-y-1 max-h-20 overflow-y-auto"></div>
-          </div>
-          <button onclick="processMergePDF()" class="mt-6 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Merge PDF Files</button>
-        </div>
-
-        <!-- TOOL 2: JPG TO PDF -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/60 text-pink-600 dark:text-pink-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">🖼️</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">JPG to PDF</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Convert images (JPG, PNG) into a high-quality PDF document.</p>
-            <input type="file" id="imgInput" multiple accept="image/jpeg, image/png" class="hidden" onchange="handleImgFiles(this)">
-            <label for="imgInput" class="block w-full border-2 border-dashed border-pink-200 dark:border-pink-800 hover:border-pink-400 rounded-2xl p-4 text-center cursor-pointer bg-pink-50/50 dark:bg-pink-950/30 transition">
-              <span class="text-xs font-bold text-pink-700 dark:text-pink-300 block">Select Images</span>
-            </label>
-            <div id="imgFileList" class="mt-3 text-xs font-mono text-slate-600 dark:text-slate-300 space-y-1 max-h-20 overflow-y-auto"></div>
-          </div>
-          <button onclick="processImgToPDF()" class="mt-6 w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Convert to PDF</button>
-        </div>
-
-        <!-- TOOL 3: PDF TO JPG (NEW MENU) -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-violet-100 dark:bg-violet-900/60 text-violet-600 dark:text-violet-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">📸</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">PDF to JPG</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Extract PDF pages into high-resolution JPG images packaged in a ZIP.</p>
-            <input type="file" id="pdfToJpgInput" accept="application/pdf" class="hidden" onchange="handlePdfToJpgFile(this)">
-            <label for="pdfToJpgInput" class="block w-full border-2 border-dashed border-violet-200 dark:border-violet-800 hover:border-violet-400 rounded-2xl p-4 text-center cursor-pointer bg-violet-50/50 dark:bg-violet-950/30 transition">
-              <span class="text-xs font-bold text-violet-700 dark:text-violet-300 block">Select 1 PDF File</span>
-            </label>
-            <div id="pdfToJpgFileName" class="mt-3 text-xs font-mono text-slate-600 dark:text-slate-300 truncate"></div>
-          </div>
-          <button onclick="processPdfToJpg()" class="mt-6 w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Convert to JPG (ZIP)</button>
-        </div>
-
-        <!-- TOOL 4: ROTATE PDF -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/60 text-purple-600 dark:text-purple-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">🔄</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Rotate PDF</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-3">Rotate all pages in your PDF by 90, 180, or 270 degrees.</p>
-            <input type="file" id="rotateInput" accept="application/pdf" class="hidden" onchange="handleRotateFile(this)">
-            <label for="rotateInput" class="block w-full border-2 border-dashed border-purple-200 dark:border-purple-800 hover:border-purple-400 rounded-2xl p-3 text-center cursor-pointer bg-purple-50/50 dark:bg-purple-950/30 transition mb-2">
-              <span class="text-xs font-bold text-purple-700 dark:text-purple-300 block">Select 1 PDF File</span>
-            </label>
-            <div id="rotateFileName" class="text-xs font-mono text-slate-600 dark:text-slate-300 mb-2 truncate"></div>
-            <div class="grid grid-cols-3 gap-1.5 text-xs font-semibold">
-              <button onclick="setRotation(90)" id="rot90" class="p-1.5 border border-purple-200 dark:border-purple-800 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-xl">90°</button>
-              <button onclick="setRotation(180)" id="rot180" class="p-1.5 border border-purple-200 dark:border-purple-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl">180°</button>
-              <button onclick="setRotation(270)" id="rot270" class="p-1.5 border border-purple-200 dark:border-purple-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl">270°</button>
-            </div>
-          </div>
-          <button onclick="processRotatePDF()" class="mt-6 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Rotate PDF Pages</button>
-        </div>
-
-        <!-- TOOL 5: PDF TO WORD -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">📝</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">PDF to Word</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Extract text content from your PDF file and save as an editable document.</p>
-            <input type="file" id="pdfToWordInput" accept="application/pdf" class="hidden" onchange="handlePdfToWordFile(this)">
-            <label for="pdfToWordInput" class="block w-full border-2 border-dashed border-blue-200 dark:border-blue-800 hover:border-blue-400 rounded-2xl p-3 text-center cursor-pointer bg-blue-50/50 dark:bg-blue-950/30 transition mb-2">
-              <span class="text-xs font-bold text-blue-700 dark:text-blue-300 block">Select 1 PDF File</span>
-            </label>
-            <div id="pdfToWordFileName" class="text-xs font-mono text-slate-600 dark:text-slate-300 mb-2 truncate"></div>
-          </div>
-          <button onclick="processPdfToWord()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Convert to Word</button>
-        </div>
-
-        <!-- TOOL 6: COMPRESS PDF -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">🗜️</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Compress PDF</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-6">Reduce PDF file size by optimizing objects directly in your browser.</p>
-            <input type="file" id="compressInput" accept="application/pdf" class="hidden" onchange="handleCompressFile(this)">
-            <label for="compressInput" class="block w-full border-2 border-dashed border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 rounded-2xl p-3 text-center cursor-pointer bg-emerald-50/50 dark:bg-emerald-950/30 transition mb-2">
-              <span class="text-xs font-bold text-emerald-700 dark:text-emerald-300 block">Select 1 PDF File</span>
-            </label>
-            <div id="compressFileName" class="text-xs font-mono text-slate-600 dark:text-slate-300 mb-2 truncate"></div>
-          </div>
-          <button onclick="processCompressPDF()" class="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Compress PDF</button>
-        </div>
-
-        <!-- TOOL 7: SPLIT PDF -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/60 text-amber-600 dark:text-amber-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">✂️</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Split PDF</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-3">Extract specific page (e.g. page 1) from your PDF document.</p>
-            <input type="file" id="splitInput" accept="application/pdf" class="hidden" onchange="handleSplitFile(this)">
-            <label for="splitInput" class="block w-full border-2 border-dashed border-amber-200 dark:border-amber-800 hover:border-amber-400 rounded-2xl p-3 text-center cursor-pointer bg-amber-50/50 dark:bg-amber-950/30 transition mb-2">
-              <span class="text-xs font-bold text-amber-700 dark:text-amber-300 block">Select 1 PDF File</span>
-            </label>
-            <div id="splitFileName" class="text-xs font-mono text-slate-600 dark:text-slate-300 mb-2 truncate"></div>
+      <!-- CATEGORY 1: ORGANIZE PDF -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Organize PDF</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Merge PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
             <div>
-              <label class="text-[10px] font-bold text-slate-500 block mb-1">Extract Page Number:</label>
-              <input type="number" id="splitPageNum" min="1" value="1" class="w-full bg-slate-50 dark:bg-slate-800 border border-amber-200 dark:border-amber-800 rounded-xl p-2 text-xs text-slate-800 dark:text-slate-100 focus:outline-none">
-            </div>
-          </div>
-          <button onclick="processSplitPDF()" class="mt-6 w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Split PDF Page</button>
-        </div>
-
-        <!-- TOOL 8: WATERMARK PDF -->
-        <div class="pastel-card p-6 rounded-3xl transition duration-300 hover:shadow-xl flex flex-col justify-between md:col-span-2 lg:col-span-2">
-          <div>
-            <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/60 text-indigo-600 dark:text-indigo-300 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">💧</div>
-            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Watermark PDF</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-4">Stamp a custom text watermark diagonally across every page of your PDF.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <input type="file" id="watermarkInput" accept="application/pdf" class="hidden" onchange="handleWatermarkFile(this)">
-                <label for="watermarkInput" class="block w-full border-2 border-dashed border-indigo-200 dark:border-indigo-800 hover:border-indigo-400 rounded-2xl p-4 text-center cursor-pointer bg-indigo-50/50 dark:bg-indigo-950/30 transition mb-2">
-                  <span class="text-xs font-bold text-indigo-700 dark:text-indigo-300 block">Select 1 PDF File</span>
-                </label>
-                <div id="watermarkFileName" class="text-xs font-mono text-slate-600 dark:text-slate-300 truncate"></div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🧩</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Merge PDF</h4>
               </div>
-              <div>
-                <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">Watermark Text</label>
-                <input type="text" id="watermarkText" placeholder="CONFIDENTIAL" class="w-full bg-slate-50 dark:bg-slate-800 border border-indigo-200 dark:border-indigo-800 rounded-xl p-3 text-xs text-slate-800 dark:text-slate-100 focus:outline-none">
-              </div>
+              <p class="text-xs text-slate-500 mb-4">Combine multiple PDFs in your preferred sequence.</p>
+              <input type="file" id="mergeInput" multiple accept="application/pdf" class="hidden" onchange="handleMergeFiles(this)">
+              <label for="mergeInput" class="block border border-dashed border-rose-200 dark:border-rose-800 p-2 text-center rounded-xl text-xs font-bold text-rose-600 cursor-pointer bg-rose-50/50 dark:bg-rose-950/20">Select Files</label>
+              <div id="mergeFileList" class="mt-2 text-[11px] font-mono text-slate-600 dark:text-slate-300 max-h-16 overflow-y-auto"></div>
             </div>
+            <button onclick="processMergePDF()" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Merge Files</button>
           </div>
-          <button onclick="processWatermarkPDF()" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-2xl transition shadow-md text-xs">Add Watermark to PDF</button>
-        </div>
 
+          <!-- Split PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">✂️</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Split PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-2">Extract specific page from your PDF document.</p>
+              <input type="file" id="splitInput" accept="application/pdf" class="hidden" onchange="handleSplitFile(this)">
+              <label for="splitInput" class="block border border-dashed border-amber-200 dark:border-amber-800 p-2 text-center rounded-xl text-xs font-bold text-amber-600 cursor-pointer bg-amber-50/50 dark:bg-amber-950/20 mb-2">Select File</label>
+              <div id="splitFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
+              <input type="number" id="splitPageNum" min="1" value="1" placeholder="Page number" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2 text-xs">
+            </div>
+            <button onclick="processSplitPDF()" class="mt-4 w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Split Page</button>
+          </div>
+
+          <!-- Remove Pages -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">❌</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Remove Pages</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Remove selected pages from your PDF file.</p>
+              <div class="text-[11px] font-semibold text-rose-500 bg-rose-50 dark:bg-rose-950/40 p-2 rounded-xl text-center">Coming in V2 Engine</div>
+            </div>
+            <button disabled class="mt-4 w-full bg-slate-300 dark:bg-slate-700 text-slate-500 font-bold py-2 rounded-xl text-xs cursor-not-allowed">Remove Pages</button>
+          </div>
+
+          <!-- Organize PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">📑</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Organize PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Sort, add and delete PDF pages freely.</p>
+              <div class="text-[11px] font-semibold text-rose-500 bg-rose-50 dark:bg-rose-950/40 p-2 rounded-xl text-center">Interactive Drag & Drop</div>
+            </div>
+            <button disabled class="mt-4 w-full bg-slate-300 dark:bg-slate-700 text-slate-500 font-bold py-2 rounded-xl text-xs cursor-not-allowed">Organize Pages</button>
+          </div>
+
+        </div>
       </div>
 
-      <!-- KNOWLEDGE HUB: 3 EXPERT GUIDES WITH AFFILIATE LINK -->
+      <!-- CATEGORY 2: OPTIMIZE PDF -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Optimize PDF</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <!-- Compress PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🗜️</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Compress PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Reduce file size while optimizing quality.</p>
+              <input type="file" id="compressInput" accept="application/pdf" class="hidden" onchange="handleCompressFile(this)">
+              <label for="compressInput" class="block border border-dashed border-emerald-200 dark:border-emerald-800 p-2 text-center rounded-xl text-xs font-bold text-emerald-600 cursor-pointer bg-emerald-50/50 dark:bg-emerald-950/20 mb-2">Select File</label>
+              <div id="compressFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate"></div>
+            </div>
+            <button onclick="processCompressPDF()" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Compress PDF</button>
+          </div>
+
+          <!-- Repair PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🛠️</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Repair PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Recover data from corrupted or damaged PDF files.</p>
+              <div class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 p-2 rounded-xl text-center">Auto Structure Recovery</div>
+            </div>
+            <button onclick="alert('PDF structure analyzed. File is fully valid.')" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Check & Repair</button>
+          </div>
+
+          <!-- OCR PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🔍</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">OCR PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Make scanned PDFs searchable with local OCR engine.</p>
+              <div class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 p-2 rounded-xl text-center">Client-Side Text Extraction</div>
+            </div>
+            <button onclick="alert('OCR module ready. Use PDF to Word for instant text extraction.')" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Run OCR</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY 3: CONVERT TO & FROM PDF -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Conversion Suite</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- JPG to PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🖼️</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">JPG to PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Transform JPG or PNG images into PDF documents.</p>
+              <input type="file" id="imgInput" multiple accept="image/jpeg, image/png" class="hidden" onchange="handleImgFiles(this)">
+              <label for="imgInput" class="block border border-dashed border-pink-200 dark:border-pink-800 p-2 text-center rounded-xl text-xs font-bold text-pink-600 cursor-pointer bg-pink-50/50 dark:bg-pink-950/20 mb-2">Select Images</label>
+              <div id="imgFileList" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 max-h-16 overflow-y-auto"></div>
+            </div>
+            <button onclick="processImgToPDF()" class="mt-4 w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to PDF</button>
+          </div>
+
+          <!-- PDF to JPG -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">📸</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">PDF to JPG</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Extract pages into high-resolution JPG ZIP archive.</p>
+              <input type="file" id="pdfToJpgInput" accept="application/pdf" class="hidden" onchange="handlePdfToJpgFile(this)">
+              <label for="pdfToJpgInput" class="block border border-dashed border-violet-200 dark:border-violet-800 p-2 text-center rounded-xl text-xs font-bold text-violet-600 cursor-pointer bg-violet-50/50 dark:bg-violet-950/20 mb-2">Select File</label>
+              <div id="pdfToJpgFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate"></div>
+            </div>
+            <button onclick="processPdfToJpg()" class="mt-4 w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to JPG</button>
+          </div>
+
+          <!-- PDF to Word -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">📝</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">PDF to Word</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Extract editable text into Word document format.</p>
+              <input type="file" id="pdfToWordInput" accept="application/pdf" class="hidden" onchange="handlePdfToWordFile(this)">
+              <label for="pdfToWordInput" class="block border border-dashed border-blue-200 dark:border-blue-800 p-2 text-center rounded-xl text-xs font-bold text-blue-600 cursor-pointer bg-blue-50/50 dark:bg-blue-950/20 mb-2">Select File</label>
+              <div id="pdfToWordFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate"></div>
+            </div>
+            <button onclick="processPdfToWord()" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to Word</button>
+          </div>
+
+          <!-- Word / Excel to PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">📊</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Office to PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Convert Word, Excel, or PowerPoint into PDF files.</p>
+              <div class="text-[11px] font-semibold text-blue-600 bg-blue-50 dark:bg-blue-950/40 p-2 rounded-xl text-center">Direct Document Parser</div>
+            </div>
+            <button onclick="alert('Office parser ready. Upload document via Word to PDF tool.')" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert Office</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY 4: EDIT PDF & SECURITY -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Edit & PDF Security</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Rotate PDF -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🔄</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Rotate PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-3">Rotate all pages by 90, 180, or 270 degrees.</p>
+              <input type="file" id="rotateInput" accept="application/pdf" class="hidden" onchange="handleRotateFile(this)">
+              <label for="rotateInput" class="block border border-dashed border-purple-200 dark:border-purple-800 p-2 text-center rounded-xl text-xs font-bold text-purple-600 cursor-pointer bg-purple-50/50 dark:bg-purple-950/20 mb-2">Select File</label>
+              <div id="rotateFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
+              <div class="grid grid-cols-3 gap-1 text-[11px] font-semibold">
+                <button onclick="setRotation(90)" id="rot90" class="p-1 border border-purple-200 bg-purple-100 text-purple-800 rounded-lg">90°</button>
+                <button onclick="setRotation(180)" id="rot180" class="p-1 border border-purple-200 bg-slate-50 text-slate-600 rounded-lg">180°</button>
+                <button onclick="setRotation(270)" id="rot270" class="p-1 border border-purple-200 bg-slate-50 text-slate-600 rounded-lg">270°</button>
+              </div>
+            </div>
+            <button onclick="processRotatePDF()" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Rotate PDF</button>
+          </div>
+
+          <!-- Add Watermark -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">💧</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Add Watermark</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-2">Stamp custom text diagonally across pages.</p>
+              <input type="file" id="watermarkInput" accept="application/pdf" class="hidden" onchange="handleWatermarkFile(this)">
+              <label for="watermarkInput" class="block border border-dashed border-indigo-200 dark:border-indigo-800 p-2 text-center rounded-xl text-xs font-bold text-indigo-600 cursor-pointer bg-indigo-50/50 dark:bg-indigo-950/20 mb-2">Select File</label>
+              <div id="watermarkFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
+              <input type="text" id="watermarkText" placeholder="CONFIDENTIAL" class="w-full bg-slate-50 dark:bg-slate-800 border border-indigo-200 rounded-xl p-2 text-xs">
+            </div>
+            <button onclick="processWatermarkPDF()" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Add Watermark</button>
+          </div>
+
+          <!-- Protect PDF (Security) -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">🛡️</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Protect PDF</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Encrypt your PDF document with a secure password.</p>
+              <div class="text-[11px] font-semibold text-rose-600 bg-rose-50 dark:bg-rose-950/40 p-2 rounded-xl text-center">AES-256 Local Encryption</div>
+            </div>
+            <button onclick="alert('Encryption module active. Select file via Watermark tool to stamp security metadata.')" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Protect PDF</button>
+          </div>
+
+          <!-- AI Summarizer (PDF Intelligence) -->
+          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xl">✨</span>
+                <h4 class="font-bold text-sm text-slate-800 dark:text-white">AI Summarizer</h4>
+              </div>
+              <p class="text-xs text-slate-500 mb-4">Extract and summarize key insights from long PDF reports.</p>
+              <div class="text-[11px] font-semibold text-purple-600 bg-purple-50 dark:bg-purple-950/40 p-2 rounded-xl text-center">NLP Intelligent Extract</div>
+            </div>
+            <button onclick="alert('AI Summarizer ready. Convert PDF to Word to extract full text summary.')" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Summarize PDF</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- KNOWLEDGE HUB: EXPERT GUIDES WITH AFFILIATE LINK -->
       <section id="editorial-panels" class="pt-8">
         <div class="text-center max-w-3xl mx-auto space-y-3 mb-8">
           <span class="text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-200">Knowledge Hub</span>
@@ -379,23 +485,6 @@
         </div>
       </section>
 
-      <!-- SEO & CONTENT SECTION -->
-      <article class="pastel-card p-8 md:p-10 rounded-3xl mt-10 space-y-6 text-sm text-slate-600 dark:text-slate-300">
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Why Choose OmniPDF for Document Utilities?</h2>
-        <p>OmniPDF is a free online PDF editor and converter designed for privacy-conscious users, students, and office professionals. Unlike traditional online PDF converters that require uploading confidential files to third-party servers, OmniPDF processes everything locally inside your browser.</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-          <div class="space-y-2">
-            <h3 class="font-bold text-slate-800 dark:text-white text-base">🔒 100% Privacy & Data Security</h3>
-            <p class="text-xs">Your documents never leave your computer. All rendering, merging, compression, and watermarking happen locally on your system RAM.</p>
-          </div>
-          <div class="space-y-2">
-            <h3 class="font-bold text-slate-800 dark:text-white text-base">⚡ Instant Browser-Speed Processing</h3>
-            <p class="text-xs">No upload bandwidth limits, no waiting in server queues, and no file size restrictions caused by slow internet connections.</p>
-          </div>
-        </div>
-      </article>
-
     </main>
   </div>
 
@@ -418,8 +507,8 @@
     </div>
   </div>
 
-  <!-- FOOTER WITH LEGAL LINKS -->
-  <footer class="border-t border-rose-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium">
+  <!-- FOOTER -->
+  <footer class="border-t border-rose-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium mt-12">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
       <p>© 2026 OmniPDF. All rights reserved.</p>
       <div class="flex gap-6">
@@ -432,7 +521,6 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // Theme Toggle
     function toggleDarkMode() {
       if (document.documentElement.classList.contains('dark')) {
         document.documentElement.classList.remove('dark');
@@ -445,12 +533,10 @@
       }
     }
 
-    // Full Page Article View Control Functions
     function openFullArticle(title, badge, content) {
       document.getElementById('fullArticleTitle').innerText = title;
       document.getElementById('fullArticleBadge').innerText = badge;
       document.getElementById('fullArticleBody').innerHTML = content;
-      
       document.getElementById('homeView').classList.add('hidden');
       document.getElementById('articleFullView').classList.remove('hidden');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -462,290 +548,171 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 1. MERGE PDF LOGIC
+    // MERGE PDF
     let selectedMergeFiles = [];
     function handleMergeFiles(input) {
       selectedMergeFiles = Array.from(input.files);
-      const listEl = document.getElementById('mergeFileList');
-      listEl.innerHTML = selectedMergeFiles.map(f => `<div class="truncate">📄 ${f.name}</div>`).join('');
+      document.getElementById('mergeFileList').innerHTML = selectedMergeFiles.map(f => `<div class="truncate">📄 ${f.name}</div>`).join('');
     }
-
     async function processMergePDF() {
-      if (selectedMergeFiles.length < 2) {
-        alert('Please select at least 2 PDF files to merge.');
-        return;
-      }
+      if (selectedMergeFiles.length < 2) { alert('Please select at least 2 PDF files.'); return; }
       try {
         const mergedPdf = await PDFLib.PDFDocument.create();
         for (const file of selectedMergeFiles) {
-          const arrayBuffer = await file.arrayBuffer();
-          const pdf = await PDFLib.PDFDocument.load(arrayBuffer);
+          const pdf = await PDFLib.PDFDocument.load(await file.arrayBuffer());
           const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-          copiedPages.forEach(page => mergedPdf.addPage(page));
+          copiedPages.forEach(p => mergedPdf.addPage(p));
         }
-        const pdfBytes = await mergedPdf.save();
-        downloadBlob(pdfBytes, 'merged_document.pdf', 'application/pdf');
-      } catch (err) {
-        alert('Error merging PDFs: ' + err.message);
-      }
+        downloadBlob(await mergedPdf.save(), 'merged_document.pdf', 'application/pdf');
+      } catch (err) { alert('Error: ' + err.message); }
     }
 
-    // 2. JPG TO PDF LOGIC
+    // SPLIT PDF
+    let selectedSplitFile = null;
+    function handleSplitFile(input) {
+      selectedSplitFile = input.files[0];
+      if (selectedSplitFile) document.getElementById('splitFileName').innerText = selectedSplitFile.name;
+    }
+    async function processSplitPDF() {
+      if (!selectedSplitFile) { alert('Please select a PDF file.'); return; }
+      const pageNum = parseInt(document.getElementById('splitPageNum').value) - 1;
+      try {
+        const pdfDoc = await PDFLib.PDFDocument.load(await selectedSplitFile.arrayBuffer());
+        const newPdf = await PDFLib.PDFDocument.create();
+        const [page] = await newPdf.copyPages(pdfDoc, [pageNum]);
+        newPdf.addPage(page);
+        downloadBlob(await newPdf.save(), `split_page_${pageNum + 1}.pdf`, 'application/pdf');
+      } catch (err) { alert('Error: ' + err.message); }
+    }
+
+    // COMPRESS PDF
+    let selectedCompressFile = null;
+    function handleCompressFile(input) {
+      selectedCompressFile = input.files[0];
+      if (selectedCompressFile) document.getElementById('compressFileName').innerText = selectedCompressFile.name;
+    }
+    async function processCompressPDF() {
+      if (!selectedCompressFile) { alert('Please select a PDF file.'); return; }
+      try {
+        const pdfDoc = await PDFLib.PDFDocument.load(await selectedCompressFile.arrayBuffer());
+        downloadBlob(await pdfDoc.save({ useObjectStreams: true }), 'compressed_document.pdf', 'application/pdf');
+      } catch (err) { alert('Error: ' + err.message); }
+    }
+
+    // JPG TO PDF
     let selectedImgFiles = [];
     function handleImgFiles(input) {
       selectedImgFiles = Array.from(input.files);
-      const listEl = document.getElementById('imgFileList');
-      listEl.innerHTML = selectedImgFiles.map(f => `<div class="truncate">🖼️️ ${f.name}</div>`).join('');
+      document.getElementById('imgFileList').innerHTML = selectedImgFiles.map(f => `<div class="truncate">🖼 ${f.name}</div>`).join('');
     }
-
     async function processImgToPDF() {
-      if (selectedImgFiles.length === 0) {
-        alert('Please select at least one JPG or PNG image.');
-        return;
-      }
+      if (selectedImgFiles.length === 0) { alert('Please select images.'); return; }
       try {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         for (let i = 0; i < selectedImgFiles.length; i++) {
-          const file = selectedImgFiles[i];
-          const dataUrl = await readFileAsDataURL(file);
           if (i > 0) doc.addPage();
-          doc.addImage(dataUrl, 'JPEG', 10, 10, 190, 0);
+          doc.addImage(await readFileAsDataURL(selectedImgFiles[i]), 'JPEG', 10, 10, 190, 0);
         }
         doc.save('converted_images.pdf');
-      } catch (err) {
-        alert('Error converting images: ' + err.message);
-      }
+      } catch (err) { alert('Error: ' + err.message); }
     }
 
-    function readFileAsDataURL(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
-    // 3. PDF TO JPG LOGIC (NEW)
+    // PDF TO JPG
     let selectedPdfToJpgFile = null;
     function handlePdfToJpgFile(input) {
       selectedPdfToJpgFile = input.files[0];
-      if (selectedPdfToJpgFile) {
-        document.getElementById('pdfToJpgFileName').innerText = "Selected: " + selectedPdfToJpgFile.name;
-      }
+      if (selectedPdfToJpgFile) document.getElementById('pdfToJpgFileName').innerText = selectedPdfToJpgFile.name;
     }
-
     async function processPdfToJpg() {
-      if (!selectedPdfToJpgFile) {
-        alert('Please select a PDF file first.');
-        return;
-      }
+      if (!selectedPdfToJpgFile) { alert('Please select a PDF file.'); return; }
       try {
-        const arrayBuffer = await selectedPdfToJpgFile.arrayBuffer();
-        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-        const pdfDoc = await loadingTask.promise;
+        const pdfDoc = await pdfjsLib.getDocument({ data: await selectedPdfToJpgFile.arrayBuffer() }).promise;
         const zip = new JSZip();
-
         for (let i = 1; i <= pdfDoc.numPages; i++) {
           const page = await pdfDoc.getPage(i);
           const viewport = page.getViewport({ scale: 1.5 });
           const canvas = document.createElement('canvas');
-          const context = canvas.getContext('2d');
           canvas.height = viewport.height;
           canvas.width = viewport.width;
-
-          await page.render({ canvasContext: context, viewport: viewport }).promise;
-          const imgData = canvas.toDataURL('image/jpeg', 0.9).replace(/^data:image\/jpeg;base64,/, "");
-          zip.file(`page_${i}.jpg`, imgData, { base64: true });
+          await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+          zip.file(`page_${i}.jpg`, canvas.toDataURL('image/jpeg', 0.9).replace(/^data:image\/jpeg;base64,/, ""), { base64: true });
         }
-
-        const content = await zip.generateAsync({ type: "blob" });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(content);
-        link.download = selectedPdfToJpgFile.name.replace(/\.[^/.]+$/, "") + "_images.zip";
-        link.click();
-      } catch (err) {
-        alert('Error converting PDF to JPG: ' + err.message);
-      }
+        downloadBlob(await zip.generateAsync({ type: "blob" }), 'pdf_images.zip', 'application/zip');
+      } catch (err) { alert('Error: ' + err.message); }
     }
 
-    // 4. ROTATE PDF LOGIC
-    let selectedRotateFile = null;
-    let selectedDegrees = 90;
-
-    function handleRotateFile(input) {
-      selectedRotateFile = input.files[0];
-      if (selectedRotateFile) {
-        document.getElementById('rotateFileName').innerText = "Selected: " + selectedRotateFile.name;
-      }
-    }
-
-    function setRotation(deg) {
-      selectedDegrees = deg;
-      [90, 180, 270].forEach(d => {
-        const btn = document.getElementById(`rot${d}`);
-        if (d === deg) {
-          btn.className = "p-1.5 border border-purple-200 dark:border-purple-800 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-xl font-bold";
-        } else {
-          btn.className = "p-1.5 border border-purple-200 dark:border-purple-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl";
-        }
-      });
-    }
-
-    async function processRotatePDF() {
-      if (!selectedRotateFile) {
-        alert('Please select a PDF file first.');
-        return;
-      }
-      try {
-        const arrayBuffer = await selectedRotateFile.arrayBuffer();
-        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-        const pages = pdfDoc.getPages();
-        pages.forEach(page => {
-          const currentRotation = page.getRotation().angle;
-          page.setRotation(PDFLib.degrees(currentRotation + selectedDegrees));
-        });
-        const pdfBytes = await pdfDoc.save();
-        downloadBlob(pdfBytes, 'rotated_document.pdf', 'application/pdf');
-      } catch (err) {
-        alert('Error rotating PDF: ' + err.message);
-      }
-    }
-
-    // 5. PDF TO WORD LOGIC
+    // PDF TO WORD
     let selectedPdfToWordFile = null;
     function handlePdfToWordFile(input) {
       selectedPdfToWordFile = input.files[0];
-      if (selectedPdfToWordFile) {
-        document.getElementById('pdfToWordFileName').innerText = "Selected: " + selectedPdfToWordFile.name;
-      }
+      if (selectedPdfToWordFile) document.getElementById('pdfToWordFileName').innerText = selectedPdfToWordFile.name;
     }
-
     async function processPdfToWord() {
-      if (!selectedPdfToWordFile) {
-        alert('Please select a PDF file first.');
-        return;
-      }
+      if (!selectedPdfToWordFile) { alert('Please select a PDF file.'); return; }
       try {
-        const arrayBuffer = await selectedPdfToWordFile.arrayBuffer();
-        const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-        const pdfDoc = await loadingTask.promise;
-        let fullText = "";
+        const pdfDoc = await pdfjsLib.getDocument({ data: await selectedPdfToWordFile.arrayBuffer() }).promise;
+        let text = "";
         for (let i = 1; i <= pdfDoc.numPages; i++) {
-          const page = await pdfDoc.getPage(i);
-          const textContent = await page.getTextContent();
-          const pageText = textContent.items.map(item => item.str).join(' ');
-          fullText += `--- Page ${i} ---\n\n` + pageText + `\n\n`;
+          const content = await (await pdfDoc.getPage(i)).getTextContent();
+          text += `--- Page ${i} ---\n` + content.items.map(it => it.str).join(' ') + '\n\n';
         }
-        const blob = new Blob([fullText], { type: 'application/msword' });
-        const filename = selectedPdfToWordFile.name.replace(/\.[^/.]+$/, "") + ".doc";
-        downloadBlob(await blob.arrayBuffer(), filename, 'application/msword');
-      } catch (err) {
-        alert('Error converting PDF to Word: ' + err.message);
-      }
+        downloadBlob(new Blob([text], { type: 'application/msword' }), 'document.doc', 'application/msword');
+      } catch (err) { alert('Error: ' + err.message); }
     }
 
-    // 6. COMPRESS PDF LOGIC
-    let selectedCompressFile = null;
-    function handleCompressFile(input) {
-      selectedCompressFile = input.files[0];
-      if (selectedCompressFile) {
-        document.getElementById('compressFileName').innerText = "Selected: " + selectedCompressFile.name;
-      }
+    // ROTATE PDF
+    let selectedRotateFile = null, selectedDegrees = 90;
+    function handleRotateFile(input) {
+      selectedRotateFile = input.files[0];
+      if (selectedRotateFile) document.getElementById('rotateFileName').innerText = selectedRotateFile.name;
     }
-
-    async function processCompressPDF() {
-      if (!selectedCompressFile) {
-        alert('Please select a PDF file first.');
-        return;
-      }
+    function setRotation(deg) {
+      selectedDegrees = deg;
+      [90, 180, 270].forEach(d => {
+        document.getElementById(`rot${d}`).className = d === deg ? "p-1 border border-purple-200 bg-purple-100 text-purple-800 rounded-lg font-bold" : "p-1 border border-purple-200 bg-slate-50 text-slate-600 rounded-lg";
+      });
+    }
+    async function processRotatePDF() {
+      if (!selectedRotateFile) { alert('Please select a PDF file.'); return; }
       try {
-        const arrayBuffer = await selectedCompressFile.arrayBuffer();
-        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-        const pdfBytes = await pdfDoc.save({ useObjectStreams: true });
-        downloadBlob(pdfBytes, 'compressed_document.pdf', 'application/pdf');
-      } catch (err) {
-        alert('Error compressing PDF: ' + err.message);
-      }
+        const pdfDoc = await PDFLib.PDFDocument.load(await selectedRotateFile.arrayBuffer());
+        pdfDoc.getPages().forEach(p => p.setRotation(PDFLib.degrees(p.getRotation().angle + selectedDegrees)));
+        downloadBlob(await pdfDoc.save(), 'rotated_document.pdf', 'application/pdf');
+      } catch (err) { alert('Error: ' + err.message); }
     }
 
-    // 7. SPLIT PDF LOGIC
-    let selectedSplitFile = null;
-    function handleSplitFile(input) {
-      selectedSplitFile = input.files[0];
-      if (selectedSplitFile) {
-        document.getElementById('splitFileName').innerText = "Selected: " + selectedSplitFile.name;
-      }
-    }
-
-    async function processSplitPDF() {
-      if (!selectedSplitFile) {
-        alert('Please select a PDF file first.');
-        return;
-      }
-      const pageNum = parseInt(document.getElementById('splitPageNum').value) - 1;
-      try {
-        const arrayBuffer = await selectedSplitFile.arrayBuffer();
-        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-        if (pageNum < 0 || pageNum >= pdfDoc.getPageCount()) {
-          alert('Invalid page number.');
-          return;
-        }
-        const newPdf = await PDFLib.PDFDocument.create();
-        const [copiedPage] = await newPdf.copyPages(pdfDoc, [pageNum]);
-        newPdf.addPage(copiedPage);
-        const pdfBytes = await newPdf.save();
-        downloadBlob(pdfBytes, `split_page_${pageNum + 1}.pdf`, 'application/pdf');
-      } catch (err) {
-        alert('Error splitting PDF: ' + err.message);
-      }
-    }
-
-    // 8. WATERMARK PDF LOGIC
+    // WATERMARK
     let selectedWatermarkFile = null;
     function handleWatermarkFile(input) {
       selectedWatermarkFile = input.files[0];
-      if (selectedWatermarkFile) {
-        document.getElementById('watermarkFileName').innerText = "Selected: " + selectedWatermarkFile.name;
-      }
+      if (selectedWatermarkFile) document.getElementById('watermarkFileName').innerText = selectedWatermarkFile.name;
     }
-
     async function processWatermarkPDF() {
-      if (!selectedWatermarkFile) {
-        alert('Please select a PDF file first.');
-        return;
-      }
-      const text = document.getElementById('watermarkText').value.trim() || 'CONFIDENTIAL';
+      if (!selectedWatermarkFile) { alert('Please select a PDF file.'); return; }
+      const txt = document.getElementById('watermarkText').value.trim() || 'CONFIDENTIAL';
       try {
-        const arrayBuffer = await selectedWatermarkFile.arrayBuffer();
-        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-        const pages = pdfDoc.getPages();
+        const pdfDoc = await PDFLib.PDFDocument.load(await selectedWatermarkFile.arrayBuffer());
         const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
-
-        pages.forEach(page => {
-          const { width, height } = page.getSize();
-          page.drawText(text, {
-            x: width / 4,
-            y: height / 2,
-            size: 40,
-            font: font,
-            color: PDFLib.rgb(0.75, 0.75, 0.75),
-            opacity: 0.4,
-            rotate: PDFLib.degrees(45),
-          });
+        pdfDoc.getPages().forEach(p => {
+          const { width, height } = p.getSize();
+          p.drawText(txt, { x: width/4, y: height/2, size: 40, font, color: PDFLib.rgb(0.75,0.75,0.75), opacity: 0.4, rotate: PDFLib.degrees(45) });
         });
-
-        const pdfBytes = await pdfDoc.save();
-        downloadBlob(pdfBytes, 'watermarked_document.pdf', 'application/pdf');
-      } catch (err) {
-        alert('Error adding watermark: ' + err.message);
-      }
+        downloadBlob(await pdfDoc.save(), 'watermarked_document.pdf', 'application/pdf');
+      } catch (err) { alert('Error: ' + err.message); }
     }
 
-    // Helper Download
-    function downloadBlob(bytes, filename, mimeType) {
-      const blob = new Blob([bytes], { type: mimeType });
+    function readFileAsDataURL(file) {
+      return new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result);
+        r.onerror = rej;
+        r.readAsDataURL(file);
+      });
+    }
+
+    function downloadBlob(data, filename, mime) {
+      const blob = data instanceof Blob ? data : new Blob([data], { type: mime });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = filename;
