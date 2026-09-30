@@ -6,8 +6,8 @@
   
   <!-- SEO Meta Tags -->
   <title>OmniPDF - Ultimate Free Online PDF Suite (Organize, Convert, Edit & Security)</title>
-  <meta name="description" content="100% free, secure, and browser-based online PDF toolkit. Merge, split, compress, convert PDF to JPG/Word, protect, watermark, and organize PDF files instantly.">
-  <meta name="keywords" content="merge pdf, split pdf, compress pdf, pdf to jpg, pdf to word, protect pdf, unlock pdf, watermark pdf, free pdf tools">
+  <meta name="description" content="100% free, secure, and browser-based online PDF toolkit. Merge, split, compress, remove pages, organize PDF, protect, and watermark PDF files instantly.">
+  <meta name="keywords" content="merge pdf, split pdf, remove pages from pdf, organize pdf, compress pdf, pdf to jpg, pdf to word, watermark pdf">
   <meta name="author" content="OmniPDF">
   <meta name="robots" content="index, follow">
 
@@ -159,30 +159,36 @@
             <button onclick="processSplitPDF()" class="mt-4 w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Split Page</button>
           </div>
 
-          <!-- Remove Pages -->
+          <!-- Remove Pages (NOW ACTIVE) -->
           <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
             <div>
               <div class="flex items-center gap-3 mb-3">
                 <span class="text-xl">❌</span>
                 <h4 class="font-bold text-sm text-slate-800 dark:text-white">Remove Pages</h4>
               </div>
-              <p class="text-xs text-slate-500 mb-4">Remove selected pages from your PDF file.</p>
-              <div class="text-[11px] font-semibold text-rose-500 bg-rose-50 dark:bg-rose-950/40 p-2 rounded-xl text-center">Coming in V2 Engine</div>
+              <p class="text-xs text-slate-500 mb-2">Remove selected pages (e.g. 1, 3, 5).</p>
+              <input type="file" id="removeInput" accept="application/pdf" class="hidden" onchange="handleRemoveFile(this)">
+              <label for="removeInput" class="block border border-dashed border-rose-200 dark:border-rose-800 p-2 text-center rounded-xl text-xs font-bold text-rose-600 cursor-pointer bg-rose-50/50 dark:bg-rose-950/20 mb-2">Select File</label>
+              <div id="removeFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
+              <input type="text" id="removePagesList" placeholder="e.g. 1, 3, 5" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2 text-xs">
             </div>
-            <button disabled class="mt-4 w-full bg-slate-300 dark:bg-slate-700 text-slate-500 font-bold py-2 rounded-xl text-xs cursor-not-allowed">Remove Pages</button>
+            <button onclick="processRemovePages()" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Remove Pages</button>
           </div>
 
-          <!-- Organize PDF -->
+          <!-- Organize PDF (NOW ACTIVE) -->
           <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
             <div>
               <div class="flex items-center gap-3 mb-3">
                 <span class="text-xl">📑</span>
                 <h4 class="font-bold text-sm text-slate-800 dark:text-white">Organize PDF</h4>
               </div>
-              <p class="text-xs text-slate-500 mb-4">Sort, add and delete PDF pages freely.</p>
-              <div class="text-[11px] font-semibold text-rose-500 bg-rose-50 dark:bg-rose-950/40 p-2 rounded-xl text-center">Interactive Drag & Drop</div>
+              <p class="text-xs text-slate-500 mb-2">Reorder pages (e.g. 3, 1, 2, 4).</p>
+              <input type="file" id="orgInput" accept="application/pdf" class="hidden" onchange="handleOrgFile(this)">
+              <label for="orgInput" class="block border border-dashed border-purple-200 dark:border-purple-800 p-2 text-center rounded-xl text-xs font-bold text-purple-600 cursor-pointer bg-purple-50/50 dark:bg-purple-950/20 mb-2">Select File</label>
+              <div id="orgFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
+              <input type="text" id="orgPagesOrder" placeholder="e.g. 2, 1, 3, 4" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2 text-xs">
             </div>
-            <button disabled class="mt-4 w-full bg-slate-300 dark:bg-slate-700 text-slate-500 font-bold py-2 rounded-xl text-xs cursor-not-allowed">Organize Pages</button>
+            <button onclick="processOrganizePDF()" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Reorder Pages</button>
           </div>
 
         </div>
@@ -287,7 +293,7 @@
             <button onclick="processPdfToWord()" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to Word</button>
           </div>
 
-          <!-- Word / Excel to PDF -->
+          <!-- Office to PDF -->
           <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
             <div>
               <div class="flex items-center gap-3 mb-3">
@@ -344,7 +350,7 @@
             <button onclick="processWatermarkPDF()" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Add Watermark</button>
           </div>
 
-          <!-- Protect PDF (Security) -->
+          <!-- Protect PDF -->
           <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
             <div>
               <div class="flex items-center gap-3 mb-3">
@@ -357,7 +363,7 @@
             <button onclick="alert('Encryption module active. Select file via Watermark tool to stamp security metadata.')" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Protect PDF</button>
           </div>
 
-          <!-- AI Summarizer (PDF Intelligence) -->
+          <!-- AI Summarizer -->
           <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
             <div>
               <div class="flex items-center gap-3 mb-3">
@@ -583,6 +589,53 @@
         newPdf.addPage(page);
         downloadBlob(await newPdf.save(), `split_page_${pageNum + 1}.pdf`, 'application/pdf');
       } catch (err) { alert('Error: ' + err.message); }
+    }
+
+    // REMOVE PAGES (ACTIVE)
+    let selectedRemoveFile = null;
+    function handleRemoveFile(input) {
+      selectedRemoveFile = input.files[0];
+      if (selectedRemoveFile) document.getElementById('removeFileName').innerText = selectedRemoveFile.name;
+    }
+    async function processRemovePages() {
+      if (!selectedRemoveFile) { alert('Please select a PDF file.'); return; }
+      const rawInput = document.getElementById('removePagesList').value.trim();
+      if (!rawInput) { alert('Please enter page numbers to remove (e.g. 1, 3, 5).'); return; }
+      try {
+        const removeIndices = rawInput.split(',').map(n => parseInt(n.trim()) - 1);
+        const pdfDoc = await PDFLib.PDFDocument.load(await selectedRemoveFile.arrayBuffer());
+        const totalPages = pdfDoc.getPageCount();
+        const keepIndices = [];
+        for (let i = 0; i < totalPages; i++) {
+          if (!removeIndices.includes(i)) {
+            keepIndices.push(i);
+          }
+        }
+        const newPdf = await PDFLib.PDFDocument.create();
+        const copiedPages = await newPdf.copyPages(pdfDoc, keepIndices);
+        copiedPages.forEach(p => newPdf.addPage(p));
+        downloadBlob(await newPdf.save(), 'pages_removed.pdf', 'application/pdf');
+      } catch (err) { alert('Error removing pages: ' + err.message); }
+    }
+
+    // ORGANIZE / REORDER PAGES (ACTIVE)
+    let selectedOrgFile = null;
+    function handleOrgFile(input) {
+      selectedOrgFile = input.files[0];
+      if (selectedOrgFile) document.getElementById('orgFileName').innerText = selectedOrgFile.name;
+    }
+    async function processOrganizePDF() {
+      if (!selectedOrgFile) { alert('Please select a PDF file.'); return; }
+      const rawInput = document.getElementById('orgPagesOrder').value.trim();
+      if (!rawInput) { alert('Please enter new page order (e.g. 2, 1, 3).'); return; }
+      try {
+        const orderIndices = rawInput.split(',').map(n => parseInt(n.trim()) - 1);
+        const pdfDoc = await PDFLib.PDFDocument.load(await selectedOrgFile.arrayBuffer());
+        const newPdf = await PDFLib.PDFDocument.create();
+        const copiedPages = await newPdf.copyPages(pdfDoc, orderIndices);
+        copiedPages.forEach(p => newPdf.addPage(p));
+        downloadBlob(await newPdf.save(), 'organized_document.pdf', 'application/pdf');
+      } catch (err) { alert('Error organizing PDF: ' + err.message); }
     }
 
     // COMPRESS PDF
