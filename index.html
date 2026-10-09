@@ -115,7 +115,7 @@
       </p>
     </section>
 
-    <!-- MAIN CONTAINER (ALL ORIGINAL TOOLS RETAINED) -->
+    <!-- MAIN CONTAINER -->
     <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-10">
 
       <!-- CATEGORY 1: ORGANIZE PDF -->
@@ -374,7 +374,7 @@
         </div>
       </div>
 
-      <!-- KNOWLEDGE HUB: EXPERT GUIDES (LINKS TO SEPARATE HTML FILES) -->
+      <!-- KNOWLEDGE HUB: EXPERT GUIDES -->
       <section id="editorial-panels" class="pt-8">
         <div class="text-center max-w-3xl mx-auto space-y-3 mb-8">
           <span class="text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-200">Knowledge Hub</span>
@@ -487,18 +487,46 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="border-t border-rose-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium mt-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© 2026 OmniPDF. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-slate-800 dark:hover:text-white transition">Terms of Service</a>
-        <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition">Contact Us</a>
+  <footer class="border-t border-rose-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-10 mt-12 text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-6 space-y-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+        <div>
+          <h4 class="font-extrabold text-slate-800 dark:text-white mb-3 text-sm">Masterclass Guides</h4>
+          <ul class="space-y-2">
+            <li><a href="articles/client-side-processing.html" class="hover:underline">Client-Side Privacy</a></li>
+            <li><a href="articles/advanced-pdf-compression.html" class="hover:underline">PDF Compression</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-extrabold text-slate-800 dark:text-white mb-3 text-sm">&nbsp;</h4>
+          <ul class="space-y-2">
+            <li><a href="articles/pdf-watermarking-ip.html" class="hover:underline">Watermarking IP</a></li>
+            <li><a href="articles/digital-document-standards.html" class="hover:underline">Document Standards</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-extrabold text-slate-800 dark:text-white mb-3 text-sm">&nbsp;</h4>
+          <ul class="space-y-2">
+            <li><a href="articles/advanced-pdf-security-encryption.html" class="hover:underline">AES Encryption</a></li>
+            <li><a href="articles/ultimate-guide-pdf-architecture.html" class="hover:underline">PDF Architecture</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-extrabold text-slate-800 dark:text-white mb-3 text-sm">Legal & Company</h4>
+          <ul class="space-y-2">
+            <li><a href="privacy.html" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:underline">Terms of Service</a></li>
+            <li><a href="contact.html" class="hover:underline">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-200 dark:border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p>© 2026 OmniPDF. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC (ALL UTILITIES RETAINED) -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     function toggleDarkMode() {
       if (document.documentElement.classList.contains('dark')) {
