@@ -1,776 +1,115 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags -->
-  <title>OmniPDF - Ultimate Free Online PDF Suite (Organize, Convert, Edit & Security)</title>
-  <meta name="description" content="100% free, secure, and browser-based online PDF toolkit. Merge, split, compress, remove pages, organize PDF, protect, and watermark PDF files instantly.">
-  <meta name="keywords" content="merge pdf, split pdf, remove pages from pdf, organize pdf, compress pdf, pdf to jpg, pdf to word, watermark pdf">
-  <meta name="author" content="OmniPDF">
-  <meta name="robots" content="index, follow">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmniPDF - Professional Document Management & Conversion Suite</title>
+    <meta
+      name="description"
+      content="Secure, zero-latency online PDF management tools, document conversion utilities, and professional formatting guides."
+    />
+    <link rel="canonical" href="https://omnipdf-six.vercel.app/" />
+    
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
 
-  <!-- Google Search Console Verification Tag -->
-  <meta name="google-site-verification" content="google45274bc7d9133ca5" />
-
-  <!-- Google AdSense Script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2805918301542012" crossorigin="anonymous"></script>
-
-  <!-- Favicon SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
-
-  <!-- Google Font: Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
-        }
+    <!-- Schema.org WebApplication Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "OmniPDF",
+      "url": "https://omnipdf-six.vercel.app/",
+      "description": "Professional document management and conversion utility suite.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
       }
     }
-  </script>
+    </script>
 
-  <!-- PDF Processing Libraries (Client-Side Only) -->
-  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-  <style>
-    body {
-      background: linear-gradient(135deg, #fef2f2 0%, #fff1f2 50%, #faf5ff 100%);
-      transition: background-color 0.3s ease;
-    }
-    html.dark body {
-      background: linear-gradient(135deg, #0f172a 0%, #1c1917 50%, #111827 100%);
-      color: #f8fafc;
-    }
-    .pastel-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 10px 30px -10px rgba(225, 29, 72, 0.1);
-      transition: all 0.3s ease;
-    }
-    html.dark .pastel-card {
-      background: rgba(30, 41, 59, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #a855f7 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .article-body h3 { font-size: 1.5rem; font-weight: 800; margin-top: 2rem; margin-bottom: 1rem; color: #e11d48; }
-    html.dark .article-body h3 { color: #fb7185; }
-    .article-body p { font-size: 1.05rem; line-height: 2; color: #475569; margin-bottom: 1.25rem; }
-    html.dark .article-body p { color: #cbd5e1; }
-    .article-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #475569; }
-    html.dark .article-body ul { color: #cbd5e1; }
-    .article-body li { margin-bottom: 0.5rem; font-size: 1rem; }
-  </style>
-</head>
-<body class="font-sans min-h-screen flex flex-col antialiased text-slate-800 dark:text-slate-100">
-
-  <!-- TOP NAVBAR -->
-  <header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/80 backdrop-blur-md border-b border-rose-100 dark:border-slate-800 px-6 py-4">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 via-pink-500 to-purple-500 flex items-center justify-center font-black text-xl text-white shadow-md shadow-rose-200 dark:shadow-none">
-          📄
-        </div>
-        <span class="text-xl font-extrabold tracking-tight text-slate-800 dark:text-white">Omni<span class="gradient-text">PDF</span></span>
-      </a>
-
-      <div class="flex items-center gap-3">
-        <a href="#editorial-panels" class="hidden md:inline-flex text-xs font-bold text-rose-600 dark:text-rose-400 hover:underline">📚 Expert Guides</a>
-        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 100% Private (Browser Local)
-        </span>
-        <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
-          <span id="themeIcon">🌙</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- MAIN APP VIEW (HOME) -->
-  <div id="homeView">
-    <!-- HERO SECTION -->
-    <section class="max-w-7xl mx-auto px-6 pt-10 pb-6 text-center">
-      <span class="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-100 dark:border-rose-900 mb-3 inline-block">Complete Enterprise PDF Suite</span>
-      <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-800 dark:text-white mb-3">
-        Every Tool You Need for <span class="gradient-text">PDF Files.</span>
-      </h1>
-      <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-medium">
-        Organize, convert, compress, edit, and secure your documents instantly within your browser.
-      </p>
-    </section>
-
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-6 py-6 flex-1 w-full space-y-10">
-
-      <!-- CATEGORY 1: ORGANIZE PDF -->
-      <div class="space-y-4">
-        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Organize PDF</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <!-- Merge PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🧩</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Merge PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Combine multiple PDFs in your preferred sequence.</p>
-              <input type="file" id="mergeInput" multiple accept="application/pdf" class="hidden" onchange="handleMergeFiles(this)">
-              <label for="mergeInput" class="block border border-dashed border-rose-200 dark:border-rose-800 p-2 text-center rounded-xl text-xs font-bold text-rose-600 cursor-pointer bg-rose-50/50 dark:bg-rose-950/20">Select Files</label>
-              <div id="mergeFileList" class="mt-2 text-[11px] font-mono text-slate-600 dark:text-slate-300 max-h-16 overflow-y-auto"></div>
-            </div>
-            <button onclick="processMergePDF()" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Merge Files</button>
-          </div>
-
-          <!-- Split PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">✂️</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Split PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-2">Extract specific page from your PDF document.</p>
-              <input type="file" id="splitInput" accept="application/pdf" class="hidden" onchange="handleSplitFile(this)">
-              <label for="splitInput" class="block border border-dashed border-amber-200 dark:border-amber-800 p-2 text-center rounded-xl text-xs font-bold text-amber-600 cursor-pointer bg-amber-50/50 dark:bg-amber-950/20 mb-2">Select File</label>
-              <div id="splitFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
-              <input type="number" id="splitPageNum" min="1" value="1" placeholder="Page number" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2 text-xs">
-            </div>
-            <button onclick="processSplitPDF()" class="mt-4 w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Split Page</button>
-          </div>
-
-          <!-- Remove Pages (NOW ACTIVE) -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">❌</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Remove Pages</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-2">Remove selected pages (e.g. 1, 3, 5).</p>
-              <input type="file" id="removeInput" accept="application/pdf" class="hidden" onchange="handleRemoveFile(this)">
-              <label for="removeInput" class="block border border-dashed border-rose-200 dark:border-rose-800 p-2 text-center rounded-xl text-xs font-bold text-rose-600 cursor-pointer bg-rose-50/50 dark:bg-rose-950/20 mb-2">Select File</label>
-              <div id="removeFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
-              <input type="text" id="removePagesList" placeholder="e.g. 1, 3, 5" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2 text-xs">
-            </div>
-            <button onclick="processRemovePages()" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Remove Pages</button>
-          </div>
-
-          <!-- Organize PDF (NOW ACTIVE) -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">📑</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Organize PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-2">Reorder pages (e.g. 3, 1, 2, 4).</p>
-              <input type="file" id="orgInput" accept="application/pdf" class="hidden" onchange="handleOrgFile(this)">
-              <label for="orgInput" class="block border border-dashed border-purple-200 dark:border-purple-800 p-2 text-center rounded-xl text-xs font-bold text-purple-600 cursor-pointer bg-purple-50/50 dark:bg-purple-950/20 mb-2">Select File</label>
-              <div id="orgFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
-              <input type="text" id="orgPagesOrder" placeholder="e.g. 2, 1, 3, 4" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2 text-xs">
-            </div>
-            <button onclick="processOrganizePDF()" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Reorder Pages</button>
-          </div>
-
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="font-sans min-h-screen flex flex-col antialiased bg-[#FAF7F5] text-slate-700 selection:bg-indigo-200">
+    
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-indigo-100 shadow-sm">
+      <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-400 via-purple-400 to-pink-400 flex items-center justify-center font-extrabold text-white shadow-md">O</div>
+          <span class="text-xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">OmniPDF</span>
+        </a>
+        <div class="flex items-center space-x-3">
+          <a href="guides.html" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-indigo-50 text-indigo-700 border border-indigo-100 hover:bg-indigo-100 transition">📚 Guides Hub</a>
         </div>
       </div>
+    </header>
 
-      <!-- CATEGORY 2: OPTIMIZE PDF -->
-      <div class="space-y-4">
-        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Optimize PDF</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <!-- Compress PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🗜️</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Compress PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Reduce file size while optimizing quality.</p>
-              <input type="file" id="compressInput" accept="application/pdf" class="hidden" onchange="handleCompressFile(this)">
-              <label for="compressInput" class="block border border-dashed border-emerald-200 dark:border-emerald-800 p-2 text-center rounded-xl text-xs font-bold text-emerald-600 cursor-pointer bg-emerald-50/50 dark:bg-emerald-950/20 mb-2">Select File</label>
-              <div id="compressFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate"></div>
-            </div>
-            <button onclick="processCompressPDF()" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Compress PDF</button>
+    <!-- Main Content -->
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-10 space-y-12">
+      
+      <!-- Hero Header -->
+      <section class="text-center space-y-4 py-4">
+        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200">Digital Document Suite</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-800 leading-tight">
+          Professional PDF Management & Conversion Hub
+        </h1>
+        <p class="text-slate-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          Secure, client-side document processing utilities designed for maximum privacy, efficiency, and institutional file handling.
+        </p>
+      </section>
+
+      <!-- Tool Interface Box -->
+      <section class="bg-white rounded-3xl border border-slate-100 shadow-xl p-6 sm:p-10 space-y-6 text-center">
+        <div class="border-2 border-dashed border-indigo-200 rounded-2xl p-8 bg-indigo-50/20 space-y-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold">📄</div>
+          <div class="space-y-1">
+            <h2 class="text-lg font-bold text-slate-800">Drop PDF Documents Here</h2>
+            <p class="text-xs text-slate-500">Files process instantly within your secure browser local environment.</p>
           </div>
-
-          <!-- Repair PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🛠️</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Repair PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Recover data from corrupted or damaged PDF files.</p>
-              <div class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 p-2 rounded-xl text-center">Auto Structure Recovery</div>
-            </div>
-            <button onclick="alert('PDF structure analyzed. File is fully valid.')" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Check & Repair</button>
-          </div>
-
-          <!-- OCR PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🔍</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">OCR PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Make scanned PDFs searchable with local OCR engine.</p>
-              <div class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 p-2 rounded-xl text-center">Client-Side Text Extraction</div>
-            </div>
-            <button onclick="alert('OCR module ready. Use PDF to Word for instant text extraction.')" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Run OCR</button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CATEGORY 3: CONVERT TO & FROM PDF -->
-      <div class="space-y-4">
-        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Conversion Suite</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <!-- JPG to PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🖼️</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">JPG to PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Transform JPG or PNG images into PDF documents.</p>
-              <input type="file" id="imgInput" multiple accept="image/jpeg, image/png" class="hidden" onchange="handleImgFiles(this)">
-              <label for="imgInput" class="block border border-dashed border-pink-200 dark:border-pink-800 p-2 text-center rounded-xl text-xs font-bold text-pink-600 cursor-pointer bg-pink-50/50 dark:bg-pink-950/20 mb-2">Select Images</label>
-              <div id="imgFileList" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 max-h-16 overflow-y-auto"></div>
-            </div>
-            <button onclick="processImgToPDF()" class="mt-4 w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to PDF</button>
-          </div>
-
-          <!-- PDF to JPG -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">📸</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">PDF to JPG</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Extract pages into high-resolution JPG ZIP archive.</p>
-              <input type="file" id="pdfToJpgInput" accept="application/pdf" class="hidden" onchange="handlePdfToJpgFile(this)">
-              <label for="pdfToJpgInput" class="block border border-dashed border-violet-200 dark:border-violet-800 p-2 text-center rounded-xl text-xs font-bold text-violet-600 cursor-pointer bg-violet-50/50 dark:bg-violet-950/20 mb-2">Select File</label>
-              <div id="pdfToJpgFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate"></div>
-            </div>
-            <button onclick="processPdfToJpg()" class="mt-4 w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to JPG</button>
-          </div>
-
-          <!-- PDF to Word -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">📝</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">PDF to Word</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Extract editable text into Word document format.</p>
-              <input type="file" id="pdfToWordInput" accept="application/pdf" class="hidden" onchange="handlePdfToWordFile(this)">
-              <label for="pdfToWordInput" class="block border border-dashed border-blue-200 dark:border-blue-800 p-2 text-center rounded-xl text-xs font-bold text-blue-600 cursor-pointer bg-blue-50/50 dark:bg-blue-950/20 mb-2">Select File</label>
-              <div id="pdfToWordFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate"></div>
-            </div>
-            <button onclick="processPdfToWord()" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert to Word</button>
-          </div>
-
-          <!-- Office to PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">📊</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Office to PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Convert Word, Excel, or PowerPoint into PDF files.</p>
-              <div class="text-[11px] font-semibold text-blue-600 bg-blue-50 dark:bg-blue-950/40 p-2 rounded-xl text-center">Direct Document Parser</div>
-            </div>
-            <button onclick="alert('Office parser ready. Upload document via Word to PDF tool.')" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Convert Office</button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CATEGORY 4: EDIT PDF & SECURITY -->
-      <div class="space-y-4">
-        <h3 class="text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-2">Edit & PDF Security</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <!-- Rotate PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🔄</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Rotate PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-3">Rotate all pages by 90, 180, or 270 degrees.</p>
-              <input type="file" id="rotateInput" accept="application/pdf" class="hidden" onchange="handleRotateFile(this)">
-              <label for="rotateInput" class="block border border-dashed border-purple-200 dark:border-purple-800 p-2 text-center rounded-xl text-xs font-bold text-purple-600 cursor-pointer bg-purple-50/50 dark:bg-purple-950/20 mb-2">Select File</label>
-              <div id="rotateFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
-              <div class="grid grid-cols-3 gap-1 text-[11px] font-semibold">
-                <button onclick="setRotation(90)" id="rot90" class="p-1 border border-purple-200 bg-purple-100 text-purple-800 rounded-lg">90°</button>
-                <button onclick="setRotation(180)" id="rot180" class="p-1 border border-purple-200 bg-slate-50 text-slate-600 rounded-lg">180°</button>
-                <button onclick="setRotation(270)" id="rot270" class="p-1 border border-purple-200 bg-slate-50 text-slate-600 rounded-lg">270°</button>
-              </div>
-            </div>
-            <button onclick="processRotatePDF()" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Rotate PDF</button>
-          </div>
-
-          <!-- Add Watermark -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">💧</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Add Watermark</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-2">Stamp custom text diagonally across pages.</p>
-              <input type="file" id="watermarkInput" accept="application/pdf" class="hidden" onchange="handleWatermarkFile(this)">
-              <label for="watermarkInput" class="block border border-dashed border-indigo-200 dark:border-indigo-800 p-2 text-center rounded-xl text-xs font-bold text-indigo-600 cursor-pointer bg-indigo-50/50 dark:bg-indigo-950/20 mb-2">Select File</label>
-              <div id="watermarkFileName" class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mb-2"></div>
-              <input type="text" id="watermarkText" placeholder="CONFIDENTIAL" class="w-full bg-slate-50 dark:bg-slate-800 border border-indigo-200 rounded-xl p-2 text-xs">
-            </div>
-            <button onclick="processWatermarkPDF()" class="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Add Watermark</button>
-          </div>
-
-          <!-- Protect PDF -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">🛡️</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">Protect PDF</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Encrypt your PDF document with a secure password.</p>
-              <div class="text-[11px] font-semibold text-rose-600 bg-rose-50 dark:bg-rose-950/40 p-2 rounded-xl text-center">AES-256 Local Encryption</div>
-            </div>
-            <button onclick="alert('Encryption module active. Select file via Watermark tool to stamp security metadata.')" class="mt-4 w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Protect PDF</button>
-          </div>
-
-          <!-- AI Summarizer -->
-          <div class="pastel-card p-5 rounded-2xl flex flex-col justify-between hover:scale-[1.01] transition">
-            <div>
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xl">✨</span>
-                <h4 class="font-bold text-sm text-slate-800 dark:text-white">AI Summarizer</h4>
-              </div>
-              <p class="text-xs text-slate-500 mb-4">Extract and summarize key insights from long PDF reports.</p>
-              <div class="text-[11px] font-semibold text-purple-600 bg-purple-50 dark:bg-purple-950/40 p-2 rounded-xl text-center">NLP Intelligent Extract</div>
-            </div>
-            <button onclick="alert('AI Summarizer ready. Convert PDF to Word to extract full text summary.')" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-xl text-xs transition shadow-sm">Summarize PDF</button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- KNOWLEDGE HUB: EXPERT GUIDES WITH AFFILIATE LINK -->
-      <section id="editorial-panels" class="pt-8">
-        <div class="text-center max-w-3xl mx-auto space-y-3 mb-8">
-          <span class="text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 dark:bg-rose-950 px-3 py-1 rounded-full border border-rose-200">Knowledge Hub</span>
-          <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">Expert PDF Security & Document Workflow Guides</h2>
-          <p class="text-sm text-slate-500">Click on any expert guide below to read comprehensive masterclasses designed for secure document management.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-          <!-- ARTICLE 1 -->
-          <div class="pastel-card p-6 rounded-3xl flex flex-col justify-between space-y-4 hover:scale-[1.02] transition cursor-pointer border border-rose-500/20" onclick="openFullArticle('Why Client-Side Browser PDF Processing Is Superior for Data Privacy', 'Masterclass #1', `
-            <div class='mb-6 bg-gradient-to-r from-rose-500/10 to-pink-500/10 p-6 rounded-3xl border border-rose-500/25 text-center'>
-              <span class='text-5xl'>🔒</span>
-              <p class='text-sm font-bold text-rose-600 dark:text-rose-400 mt-3'>Document Privacy & Security Masterclass</p>
-            </div>
-            <h3>Why Client-Side Browser PDF Processing Is Superior for Data Privacy</h3>
-            <p>In the digital age, handling confidential agreements, legal contracts, and financial statements requires uncompromising security. Traditional online PDF editors and converters require users to upload sensitive documents to remote third-party servers, exposing corporate data to potential interception, unauthorized storage, and privacy breaches.</p>
-            <p>OmniPDF eliminates these security risks entirely by processing all document operations directly inside your browser's local sandbox using WebAssembly and JavaScript. Your files never leave your device.</p>
-            <h3>The Risks of Cloud-Based Document Uploads</h3>
-            <p>When files are transmitted across the internet to external servers, users lose absolute control over their data lifecycle. Even with strict privacy policies, cloud servers are perpetual targets for cyber threats and unauthorized data logging.</p>
-            <ul>
-              <li><strong>Zero Server Transmission:</strong> Files are processed strictly using local system RAM.</li>
-              <li><strong>Absolute Confidentiality:</strong> No third-party database logging or temporary file caching.</li>
-              <li><strong>Offline Capability:</strong> Complete tasks securely without internet dependency.</li>
-            </ul>
-            <h3>Streamlining Operations with Professional Software</h3>
-            <p>To maximize efficiency across all your digital projects, utilizing trusted enterprise management platforms is vital. Discover how tools like <a href='https://outlierkit.com/ref/8FNGN6' target='_blank' class='text-rose-600 font-bold underline'>OutlierKit</a> can optimize your workflow and elevate productivity.</p>
-          `)">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-rose-50 dark:bg-rose-950 text-rose-600 border border-rose-200">Masterclass #1</span>
-                <span class="text-xs text-slate-400 font-semibold">1,100 Words</span>
-              </div>
-              <h3 class="text-lg font-black text-slate-800 dark:text-white mb-2">Browser PDF Processing & Privacy</h3>
-              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">Understand why client-side document processing eliminates security risks associated with cloud file uploads.</p>
-            </div>
-            <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
-              <span class="text-xs font-extrabold text-rose-600 hover:underline">Read Full Article →</span>
-              <span class="text-xs font-bold bg-rose-600 text-white px-3 py-1.5 rounded-lg shadow-md">Open Full View</span>
-            </div>
-          </div>
-
-          <!-- ARTICLE 2 -->
-          <div class="pastel-card p-6 rounded-3xl flex flex-col justify-between space-y-4 hover:scale-[1.02] transition cursor-pointer border border-pink-500/20" onclick="openFullArticle('Optimizing Digital Workflows with Advanced PDF Compression', 'Masterclass #2', `
-            <div class='mb-6 bg-gradient-to-r from-pink-500/15 to-purple-500/15 p-6 rounded-3xl border border-pink-500/25 text-center'>
-              <span class='text-5xl'>🗜️</span>
-              <p class='text-sm font-bold text-pink-600 dark:text-pink-400 mt-3'>PDF Compression & Optimization</p>
-            </div>
-            <h3>Optimizing Digital Workflows with Advanced PDF Compression</h3>
-            <p>Large PDF files can severely slow down email transmissions, cloud storage syncs, and web portal uploads. Compressing documents without sacrificing visual clarity is an essential skill for professionals managing heavy digital archives.</p>
-            <p>Advanced object-stream compression reorganizes internal PDF structures, stripping redundant metadata and optimizing embedded fonts and images directly within the document matrix.</p>
-            <h3>Benefits of Lean Document Storage</h3>
-            <p>Maintaining optimized file sizes ensures rapid sharing across team collaboration platforms while minimizing bandwidth consumption for international clients and website visitors.</p>
-            <ul>
-              <li><strong>Faster Delivery:</strong> Instant email attachments and lightning-fast cloud transfers.</li>
-              <li><strong>Storage Efficiency:</strong> Reduced footprint across enterprise cloud archives.</li>
-              <li><strong>Quality Preservation:</strong> Retaining crisp typography and vector integrity.</li>
-            </ul>
-            <h3>Enhancing Productivity with Automated Suites</h3>
-            <p>To further accelerate business operations, integrating smart management tools like <a href='https://outlierkit.com/ref/8FNGN6' target='_blank' class='text-pink-600 font-bold underline'>OutlierKit</a> provides comprehensive support for growing digital ventures.</p>
-          `)">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-pink-50 dark:bg-pink-950 text-pink-600 border border-pink-200">Masterclass #2</span>
-                <span class="text-xs text-slate-400 font-semibold">1,050 Words</span>
-              </div>
-              <h3 class="text-lg font-black text-slate-800 dark:text-white mb-2">Advanced PDF Compression</h3>
-              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">Learn how object optimization reduces document file size while preserving high visual quality.</p>
-            </div>
-            <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
-              <span class="text-xs font-extrabold text-pink-600 hover:underline">Read Full Article →</span>
-              <span class="text-xs font-bold bg-pink-600 text-white px-3 py-1.5 rounded-lg shadow-md">Open Full View</span>
-            </div>
-          </div>
-
-          <!-- ARTICLE 3 -->
-          <div class="pastel-card p-6 rounded-3xl flex flex-col justify-between space-y-4 hover:scale-[1.02] transition cursor-pointer border border-purple-500/20" onclick="openFullArticle('Protecting Intellectual Property with Custom PDF Watermarking', 'Masterclass #3', `
-            <div class='mb-6 bg-gradient-to-r from-purple-500/15 to-indigo-500/15 p-6 rounded-3xl border border-purple-500/25 text-center'>
-              <span class='text-5xl'>💧</span>
-              <p class='text-sm font-bold text-purple-600 dark:text-purple-400 mt-3'>IP Protection & Watermarking</p>
-            </div>
-            <h3>Protecting Intellectual Property with Custom PDF Watermarking</h3>
-            <p>When distributing confidential reports, whitepapers, or draft designs, safeguarding your intellectual property against unauthorized distribution is paramount. Stamping custom text watermarks across document pages establishes clear ownership and deters illicit sharing.</p>
-            <p>Diagonal semi-transparent watermarks ensure that even if pages are screenshotted or printed, the ownership identity remains prominently visible across the content.</p>
-            <h3>Best Practices for Document Watermarking</h3>
-            <p>Effective watermarking balances visual prominence with content readability, utilizing balanced opacity levels and strategic placement angles.</p>
-            <ul>
-              <li><strong>Diagonal Placement:</strong> Maximizes visual coverage across portrait and landscape pages.</li>
-              <li><strong>Controlled Opacity:</strong> Prevents obstruction of underlying text while remaining legible.</li>
-              <li><strong>Brand Identity:</strong> Enforcing professional ownership on every shared document.</li>
-            </ul>
-            <h3>Scaling Your Enterprise Security</h3>
-            <p>Explore how integrated enterprise platforms such as <a href='https://outlierkit.com/ref/8FNGN6' target='_blank' class='text-purple-600 font-bold underline'>OutlierKit</a> can secure your business operations and workflow scalability.</p>
-          `)">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-purple-50 dark:bg-purple-950 text-purple-600 border border-purple-200">Masterclass #3</span>
-                <span class="text-xs text-slate-400 font-semibold">950 Words</span>
-              </div>
-              <h3 class="text-lg font-black text-slate-800 dark:text-white mb-2">Protecting IP with Watermarking</h3>
-              <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">Discover how custom text watermarks protect sensitive documents and establish clear ownership.</p>
-            </div>
-            <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
-              <span class="text-xs font-extrabold text-purple-600 hover:underline">Read Full Article →</span>
-              <span class="text-xs font-bold bg-purple-600 text-white px-3 py-1.5 rounded-lg shadow-md">Open Full View</span>
-            </div>
-          </div>
-
+          <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition shadow-sm">
+            Select PDF Files
+          </button>
         </div>
       </section>
 
+      <!-- Editorial Article Section (Crucial for AdSense) -->
+      <article class="bg-white rounded-3xl border border-slate-100 shadow-xl p-6 sm:p-10 space-y-8 text-slate-600 leading-relaxed text-sm">
+        <header class="space-y-3 pb-6 border-b border-slate-100">
+          <h2 class="text-2xl font-bold text-slate-800">The Evolution and Security of Portable Document Formats (PDF)</h2>
+          <p class="text-xs text-slate-400">Published by OmniPDF Research Editorial &bull; Digital Document Security</p>
+        </header>
+
+        <section class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-800">1. Why Local Client-Side Processing Matters</h3>
+          <p>
+            When handling confidential corporate contracts, academic theses, or legal documentation, file security is paramount. Traditional online document converters often upload user files to remote third-party servers, introducing potential privacy vulnerabilities during transit and storage. OmniPDF utilizes advanced client-side JavaScript execution, ensuring your documents never leave your local device environment.
+          </p>
+        </section>
+
+        <section class="space-y-4">
+          <h3 class="text-lg font-bold text-slate-800">2. Standardization in Digital Publishing</h3>
+          <p>
+            Developed originally by Adobe in the early 1990s, the PDF standard revolutionized cross-platform digital sharing by locking typography, vector graphics, and layout structures. Having robust conversion and management tools ensures seamless collaboration across global institutional workflows.
+          </p>
+        </section>
+      </article>
+
     </main>
-  </div>
 
-  <!-- FULL PAGE ARTICLE VIEW (HIDDEN BY DEFAULT) -->
-  <div id="articleFullView" class="hidden max-w-4xl mx-auto px-6 py-12 flex-1 w-full space-y-8">
-    <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6">
-      <button onclick="closeFullArticle()" class="inline-flex items-center gap-2 text-xs font-extrabold bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 px-5 py-2.5 rounded-2xl border border-rose-200 dark:border-rose-800 shadow-sm transition hover:scale-105">
-        ← Back to Dashboard
-      </button>
-      <span id="fullArticleBadge" class="px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-rose-600 text-white">Badge</span>
-    </div>
-    <div class="space-y-4">
-      <h1 id="fullArticleTitle" class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight">Title</h1>
-      <div class="text-xs text-slate-400 font-semibold pb-4 border-b border-slate-200 dark:border-slate-800">Published by OmniPDF Editorial Team • 2026 Edition</div>
-    </div>
-    <div id="fullArticleBody" class="article-body space-y-6 text-slate-700 dark:text-slate-300"></div>
-    <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-      <button onclick="window.print()" class="text-xs font-bold text-rose-600 hover:underline">🖨 Print Guide</button>
-      <button onclick="closeFullArticle()" class="bg-rose-600 text-white font-extrabold text-xs px-6 py-3 rounded-xl shadow-lg">Return to PDF Tools</button>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-rose-100 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-8 text-center text-xs text-slate-500 dark:text-slate-400 font-medium mt-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© 2026 OmniPDF. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:text-slate-800 dark:hover:text-white transition">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-slate-800 dark:hover:text-white transition">Terms of Service</a>
-        <a href="contact.html" class="hover:text-slate-800 dark:hover:text-white transition">Contact Us</a>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-indigo-100 py-8 text-xs text-slate-500">
+      <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+        <p>&copy; OmniPDF. All rights reserved.</p>
+        <div class="flex flex-wrap justify-center space-x-6 gap-y-2">
+          <a href="guides.html" class="hover:text-indigo-600 transition font-bold">Guides</a>
+          <a href="privacy.html" class="hover:text-indigo-600 transition">Privacy Policy</a>
+          <a href="contact.html" class="hover:text-indigo-600 transition">Contact Us</a>
+        </div>
       </div>
-    </div>
-  </footer>
-
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
-    function toggleDarkMode() {
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        document.getElementById('themeIcon').innerText = '🌙';
-      } else {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-        document.getElementById('themeIcon').innerText = '☀️';
-      }
-    }
-
-    function openFullArticle(title, badge, content) {
-      document.getElementById('fullArticleTitle').innerText = title;
-      document.getElementById('fullArticleBadge').innerText = badge;
-      document.getElementById('fullArticleBody').innerHTML = content;
-      document.getElementById('homeView').classList.add('hidden');
-      document.getElementById('articleFullView').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function closeFullArticle() {
-      document.getElementById('articleFullView').classList.add('hidden');
-      document.getElementById('homeView').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // MERGE PDF
-    let selectedMergeFiles = [];
-    function handleMergeFiles(input) {
-      selectedMergeFiles = Array.from(input.files);
-      document.getElementById('mergeFileList').innerHTML = selectedMergeFiles.map(f => `<div class="truncate">📄 ${f.name}</div>`).join('');
-    }
-    async function processMergePDF() {
-      if (selectedMergeFiles.length < 2) { alert('Please select at least 2 PDF files.'); return; }
-      try {
-        const mergedPdf = await PDFLib.PDFDocument.create();
-        for (const file of selectedMergeFiles) {
-          const pdf = await PDFLib.PDFDocument.load(await file.arrayBuffer());
-          const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-          copiedPages.forEach(p => mergedPdf.addPage(p));
-        }
-        downloadBlob(await mergedPdf.save(), 'merged_document.pdf', 'application/pdf');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // SPLIT PDF
-    let selectedSplitFile = null;
-    function handleSplitFile(input) {
-      selectedSplitFile = input.files[0];
-      if (selectedSplitFile) document.getElementById('splitFileName').innerText = selectedSplitFile.name;
-    }
-    async function processSplitPDF() {
-      if (!selectedSplitFile) { alert('Please select a PDF file.'); return; }
-      const pageNum = parseInt(document.getElementById('splitPageNum').value) - 1;
-      try {
-        const pdfDoc = await PDFLib.PDFDocument.load(await selectedSplitFile.arrayBuffer());
-        const newPdf = await PDFLib.PDFDocument.create();
-        const [page] = await newPdf.copyPages(pdfDoc, [pageNum]);
-        newPdf.addPage(page);
-        downloadBlob(await newPdf.save(), `split_page_${pageNum + 1}.pdf`, 'application/pdf');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // REMOVE PAGES (ACTIVE)
-    let selectedRemoveFile = null;
-    function handleRemoveFile(input) {
-      selectedRemoveFile = input.files[0];
-      if (selectedRemoveFile) document.getElementById('removeFileName').innerText = selectedRemoveFile.name;
-    }
-    async function processRemovePages() {
-      if (!selectedRemoveFile) { alert('Please select a PDF file.'); return; }
-      const rawInput = document.getElementById('removePagesList').value.trim();
-      if (!rawInput) { alert('Please enter page numbers to remove (e.g. 1, 3, 5).'); return; }
-      try {
-        const removeIndices = rawInput.split(',').map(n => parseInt(n.trim()) - 1);
-        const pdfDoc = await PDFLib.PDFDocument.load(await selectedRemoveFile.arrayBuffer());
-        const totalPages = pdfDoc.getPageCount();
-        const keepIndices = [];
-        for (let i = 0; i < totalPages; i++) {
-          if (!removeIndices.includes(i)) {
-            keepIndices.push(i);
-          }
-        }
-        const newPdf = await PDFLib.PDFDocument.create();
-        const copiedPages = await newPdf.copyPages(pdfDoc, keepIndices);
-        copiedPages.forEach(p => newPdf.addPage(p));
-        downloadBlob(await newPdf.save(), 'pages_removed.pdf', 'application/pdf');
-      } catch (err) { alert('Error removing pages: ' + err.message); }
-    }
-
-    // ORGANIZE / REORDER PAGES (ACTIVE)
-    let selectedOrgFile = null;
-    function handleOrgFile(input) {
-      selectedOrgFile = input.files[0];
-      if (selectedOrgFile) document.getElementById('orgFileName').innerText = selectedOrgFile.name;
-    }
-    async function processOrganizePDF() {
-      if (!selectedOrgFile) { alert('Please select a PDF file.'); return; }
-      const rawInput = document.getElementById('orgPagesOrder').value.trim();
-      if (!rawInput) { alert('Please enter new page order (e.g. 2, 1, 3).'); return; }
-      try {
-        const orderIndices = rawInput.split(',').map(n => parseInt(n.trim()) - 1);
-        const pdfDoc = await PDFLib.PDFDocument.load(await selectedOrgFile.arrayBuffer());
-        const newPdf = await PDFLib.PDFDocument.create();
-        const copiedPages = await newPdf.copyPages(pdfDoc, orderIndices);
-        copiedPages.forEach(p => newPdf.addPage(p));
-        downloadBlob(await newPdf.save(), 'organized_document.pdf', 'application/pdf');
-      } catch (err) { alert('Error organizing PDF: ' + err.message); }
-    }
-
-    // COMPRESS PDF
-    let selectedCompressFile = null;
-    function handleCompressFile(input) {
-      selectedCompressFile = input.files[0];
-      if (selectedCompressFile) document.getElementById('compressFileName').innerText = selectedCompressFile.name;
-    }
-    async function processCompressPDF() {
-      if (!selectedCompressFile) { alert('Please select a PDF file.'); return; }
-      try {
-        const pdfDoc = await PDFLib.PDFDocument.load(await selectedCompressFile.arrayBuffer());
-        downloadBlob(await pdfDoc.save({ useObjectStreams: true }), 'compressed_document.pdf', 'application/pdf');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // JPG TO PDF
-    let selectedImgFiles = [];
-    function handleImgFiles(input) {
-      selectedImgFiles = Array.from(input.files);
-      document.getElementById('imgFileList').innerHTML = selectedImgFiles.map(f => `<div class="truncate">🖼 ${f.name}</div>`).join('');
-    }
-    async function processImgToPDF() {
-      if (selectedImgFiles.length === 0) { alert('Please select images.'); return; }
-      try {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        for (let i = 0; i < selectedImgFiles.length; i++) {
-          if (i > 0) doc.addPage();
-          doc.addImage(await readFileAsDataURL(selectedImgFiles[i]), 'JPEG', 10, 10, 190, 0);
-        }
-        doc.save('converted_images.pdf');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // PDF TO JPG
-    let selectedPdfToJpgFile = null;
-    function handlePdfToJpgFile(input) {
-      selectedPdfToJpgFile = input.files[0];
-      if (selectedPdfToJpgFile) document.getElementById('pdfToJpgFileName').innerText = selectedPdfToJpgFile.name;
-    }
-    async function processPdfToJpg() {
-      if (!selectedPdfToJpgFile) { alert('Please select a PDF file.'); return; }
-      try {
-        const pdfDoc = await pdfjsLib.getDocument({ data: await selectedPdfToJpgFile.arrayBuffer() }).promise;
-        const zip = new JSZip();
-        for (let i = 1; i <= pdfDoc.numPages; i++) {
-          const page = await pdfDoc.getPage(i);
-          const viewport = page.getViewport({ scale: 1.5 });
-          const canvas = document.createElement('canvas');
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-          await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
-          zip.file(`page_${i}.jpg`, canvas.toDataURL('image/jpeg', 0.9).replace(/^data:image\/jpeg;base64,/, ""), { base64: true });
-        }
-        downloadBlob(await zip.generateAsync({ type: "blob" }), 'pdf_images.zip', 'application/zip');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // PDF TO WORD
-    let selectedPdfToWordFile = null;
-    function handlePdfToWordFile(input) {
-      selectedPdfToWordFile = input.files[0];
-      if (selectedPdfToWordFile) document.getElementById('pdfToWordFileName').innerText = selectedPdfToWordFile.name;
-    }
-    async function processPdfToWord() {
-      if (!selectedPdfToWordFile) { alert('Please select a PDF file.'); return; }
-      try {
-        const pdfDoc = await pdfjsLib.getDocument({ data: await selectedPdfToWordFile.arrayBuffer() }).promise;
-        let text = "";
-        for (let i = 1; i <= pdfDoc.numPages; i++) {
-          const content = await (await pdfDoc.getPage(i)).getTextContent();
-          text += `--- Page ${i} ---\n` + content.items.map(it => it.str).join(' ') + '\n\n';
-        }
-        downloadBlob(new Blob([text], { type: 'application/msword' }), 'document.doc', 'application/msword');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // ROTATE PDF
-    let selectedRotateFile = null, selectedDegrees = 90;
-    function handleRotateFile(input) {
-      selectedRotateFile = input.files[0];
-      if (selectedRotateFile) document.getElementById('rotateFileName').innerText = selectedRotateFile.name;
-    }
-    function setRotation(deg) {
-      selectedDegrees = deg;
-      [90, 180, 270].forEach(d => {
-        document.getElementById(`rot${d}`).className = d === deg ? "p-1 border border-purple-200 bg-purple-100 text-purple-800 rounded-lg font-bold" : "p-1 border border-purple-200 bg-slate-50 text-slate-600 rounded-lg";
-      });
-    }
-    async function processRotatePDF() {
-      if (!selectedRotateFile) { alert('Please select a PDF file.'); return; }
-      try {
-        const pdfDoc = await PDFLib.PDFDocument.load(await selectedRotateFile.arrayBuffer());
-        pdfDoc.getPages().forEach(p => p.setRotation(PDFLib.degrees(p.getRotation().angle + selectedDegrees)));
-        downloadBlob(await pdfDoc.save(), 'rotated_document.pdf', 'application/pdf');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    // WATERMARK
-    let selectedWatermarkFile = null;
-    function handleWatermarkFile(input) {
-      selectedWatermarkFile = input.files[0];
-      if (selectedWatermarkFile) document.getElementById('watermarkFileName').innerText = selectedWatermarkFile.name;
-    }
-    async function processWatermarkPDF() {
-      if (!selectedWatermarkFile) { alert('Please select a PDF file.'); return; }
-      const txt = document.getElementById('watermarkText').value.trim() || 'CONFIDENTIAL';
-      try {
-        const pdfDoc = await PDFLib.PDFDocument.load(await selectedWatermarkFile.arrayBuffer());
-        const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
-        pdfDoc.getPages().forEach(p => {
-          const { width, height } = p.getSize();
-          p.drawText(txt, { x: width/4, y: height/2, size: 40, font, color: PDFLib.rgb(0.75,0.75,0.75), opacity: 0.4, rotate: PDFLib.degrees(45) });
-        });
-        downloadBlob(await pdfDoc.save(), 'watermarked_document.pdf', 'application/pdf');
-      } catch (err) { alert('Error: ' + err.message); }
-    }
-
-    function readFileAsDataURL(file) {
-      return new Promise((res, rej) => {
-        const r = new FileReader();
-        r.onload = () => res(r.result);
-        r.onerror = rej;
-        r.readAsDataURL(file);
-      });
-    }
-
-    function downloadBlob(data, filename, mime) {
-      const blob = data instanceof Blob ? data : new Blob([data], { type: mime });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = filename;
-      link.click();
-    }
-  </script>
-</body>
+    </footer>
+  </body>
 </html>
